@@ -17,12 +17,19 @@ from IPython.display import SVG, Image
 from livelossplot import PlotLossesKerasTF
 import tensorflow as tf
 print("Tensorflow version:", tf.__version__)
-#########################################################
+
+
+
+
 utils.datasets.fer.plot_example_images(plt).show()
-#########################################################
+
+
+
 for expression in os.listdir("train/"):
     print(str(len(os.listdir("train/" + expression))) + " " + expression + " images")
-##################################################################################################
+
+
+
 img_size = 48
 batch_size = 64
 
@@ -42,7 +49,10 @@ validation_generator = datagen_validation.flow_from_directory("test/",
                                                     batch_size=batch_size,
                                                     class_mode='categorical',
                                                     shuffle=False)
-#####################################################################################################
+
+
+
+
 # Initialising the CNN
 model = Sequential()
 
@@ -94,7 +104,8 @@ model.add(Dense(7, activation='softmax'))
 opt = Adam(lr=0.0005)
 model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
 model.summary()
-####################################################################################################
+
+
 %%time
 
 epochs = 15
@@ -115,4 +126,4 @@ history = model.fit(
     validation_steps = validation_steps,
     callbacks=callbacks
 )
-#########################################################################################################
+
